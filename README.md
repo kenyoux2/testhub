@@ -2393,7 +2393,7 @@ Tabs.Main:AddButton({
 
 function Discordlink()
     setclipboard("https://discord.gg/wm8RCpkD6q")
-
+end  
 
     Tabs.Main:AddParagraph({
         Title = "Farming",
