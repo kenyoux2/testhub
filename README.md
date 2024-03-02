@@ -3332,8 +3332,6 @@ end)
             end
         end
     end)
-
-
     Tabs.Main:AddParagraph({
         Title = "Material",
         Content = "Auto farm material"
@@ -3412,8 +3410,6 @@ end)
         end
       end)
 if Third_Sea then
-
-
       Tabs.Main:AddParagraph({
         Title = "Rough Sea",
         Content = "Auto rough sea"
@@ -3496,8 +3492,6 @@ if Third_Sea then
             end)
         end
     end)
-
-
    local ToggleTW = Tabs.Main:AddToggle("ToggleTW", {Title = "Auto Press W", Default = false })
    ToggleTW:OnChanged(function(Value)
     _G.AutoW = Value
@@ -3512,8 +3506,6 @@ if Third_Sea then
             end)
         end
         end)
-
-        
     local ToggleTerrorshark = Tabs.Main:AddToggle("ToggleTerrorshark", {Title = "Auto Kill Terrorshark", Default = false })
     ToggleTerrorshark:OnChanged(function(Value)
         _G.AutoTerrorshark = Value
@@ -3550,8 +3542,6 @@ if Third_Sea then
             end
         end
      end)
-
-
      local TogglePiranha = Tabs.Main:AddToggle("TogglePiranha", {Title = "Auto Kill Piranha", Default = false })
      TogglePiranha:OnChanged(function(Value)
         _G.farmpiranya = Value
@@ -3588,8 +3578,6 @@ if Third_Sea then
             end
         end
      end)
-
-
      Tabs.Main:AddParagraph({
         Title = "Elite Hunter",
         Content = "Auto find and kill boss elite"
@@ -3662,8 +3650,6 @@ if Third_Sea then
    
     end
 if Third_Sea then
-
-    
        Tabs.Main:AddParagraph({
         Title = "Sea Beast",
         Content = "Auto Kill Sea Beast"
