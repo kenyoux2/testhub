@@ -2382,12 +2382,24 @@ local posY = 60
 local posZ = 0
 --------------------------------------------------------------------------------------------------------------------------------------------
 --Create Tabs
+    
+Tabs.Main:AddButton({
+    Title = "Discord Link",
+    Description = "Join Discord Plsss",
+    Callback = function()
+        Discordlink()
+    end
+})
+
+function Discordlink()
+    setclipboard("https://discord.gg/wm8RCpkD6q")
+
 
     Tabs.Main:AddParagraph({
         Title = "Farming",
         Content = "Auto Farm"
     })
-
+ 
     local DropdownSelectWeapon = Tabs.Main:AddDropdown("DropdownSelectWeapon", {
         Title = "Dropdown",
         Values = {'Melee','Sword','Blox Fruit'},
@@ -2539,18 +2551,6 @@ local posZ = 0
         end
         end
       end)
-
-
-      Tabs.Main:AddButton({
-        Title = "Redeem All Code",
-        Description = "Redeem all code x2 exp",
-        Callback = function()
-            discordlimk()
-        end
-    })
-    function discordlimk()
-        setclipboard("https://discord.gg/dUdzZskBCC")
-    end
 
       Tabs.Main:AddButton({
         Title = "Redeem All Code",
