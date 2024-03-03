@@ -4447,62 +4447,56 @@ CamShake:Stop()
 
 
 
-    local ToggleBringMob = Tabs.Setting:AddToggle("ToggleBringMob", {Title = "Bring Mob", Default = true })
-    ToggleBringMob:OnChanged(function(Value)
-        BringMobs = Value
-    end)
-    Options.ToggleBringMob:SetValue(true)
-    task.spawn(function()
-        while task.wait() do
-            pcall(function()
-                if G.BringMobs then
-                    for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-                        if not string.find(v.Name,"Boss") and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= _G.BringMode then
-                            if InMyNetWork(v.HumanoidRootPart) then
-                                v.HumanoidRootPart.CFrame = PosGay
-                                v.Humanoid.JumpPower = 0
-                                v.Humanoid.WalkSpeed = 0
-                                v.HumanoidRootPart.Size = Vector3.new(60,60,60)
-                                v.HumanoidRootPart.Transparency = 1
-                                v.HumanoidRootPart.CanCollide = false
-                                v.Head.CanCollide = false
-                                if v.Humanoid:FindFirstChild("Animator") then
-                                    v.Humanoid.Animator:Destroy()
-                                end
-                                v.Humanoid:ChangeState(11)
-                                v.Humanoid:ChangeState(14)
-                            end
-                        end
-                    end
-                end
-            end)
-        end
-    end)
-
+local ToggleBringMob = Tabs.Setting:AddToggle("ToggleBringMob", {Title = "Bring Mob", Default = true })
+ToggleBringMob:OnChanged(function(Value)
+    BringMobs = Value
+end)
+Options.ToggleBringMob:SetValue(true)
+task.spawn(function()
+    while task.wait() do
+    if BringMobs then
+    pcall(function()
+      for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
+      if not string.find(v.Name,"Boss") and v.Name == MonFarm and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 350 then
+      if InMyNetWork(v.HumanoidRootPart) then
+        if InMyNetWork(v.HumanoidRootPart) then
+      v.HumanoidRootPart.CFrame = FarmPos
+      v.HumanoidRootPart.CanCollide = false
+      v.HumanoidRootPart.Size = Vector3.new(1,1,1)
+      if v.Humanoid:FindFirstChild("Animator") then
+        v.Humanoid.Animator:Destroy()
     end
-        
-      
-      task.spawn(function()
-        while true do wait()
-        if setscriptable then
-        setscriptable(game.Players.LocalPlayer,"SimulationRadius",true)
-        end
-        if sethiddenproperty then
-        sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
-        end
-        end
-        end)
-      
-      function InMyNetWork(object)
-      if isnetworkowner then
-      return isnetworkowner(object)
-      else
-        if (object.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 350 then
-      return true
       end
-      return false
+    end
       end
       end
+      end)
+    end
+
+end
+    end)
+  
+  task.spawn(function()
+    while true do wait()
+    if setscriptable then
+    setscriptable(game.Players.LocalPlayer,"SimulationRadius",true)
+    end
+    if sethiddenproperty then
+    sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
+    end
+    end
+    end)
+  
+  function InMyNetWork(object)
+  if isnetworkowner then
+  return isnetworkowner(object)
+  else
+    if (object.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 350 then
+  return true
+  end
+  return false
+  end
+  end
 
 
 
