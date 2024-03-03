@@ -2382,7 +2382,7 @@ local posY = 60
 local posZ = 0
 --------------------------------------------------------------------------------------------------------------------------------------------
 --Create Tabs
-
+    
     Tabs.Main:AddButton({
     Title = "Join Discord",
     Description = "Join Discord plsss",
@@ -2394,6 +2394,7 @@ local posZ = 0
     function discordlink(Text)
        setclipboard("https://discord.gg/dUdzZskBCC")
 end
+
     Tabs.Main:AddParagraph({
         Title = "Farming",
         Content = "Auto Farm"
