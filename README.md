@@ -3,7 +3,7 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 --------------------------------------------------------------------------------------------------------------------------------------------
 local Window = Fluent:CreateWindow({
-    Title = "Zephyr Hub",
+    Title = "Zephyr Hub Hub",
     SubTitle = "https://discord.gg/wm8RCpkD6q",
     TabWidth = 160,
     Size = UDim2.fromOffset(500, 350),
@@ -2382,7 +2382,6 @@ local posY = 60
 local posZ = 0
 --------------------------------------------------------------------------------------------------------------------------------------------
 --Create Tabs
-    
 
     Tabs.Main:AddButton({
     Title = "Join Discord",
@@ -2395,12 +2394,11 @@ local posZ = 0
     function discordlink(Text)
        setclipboard("https://discord.gg/dUdzZskBCC")
 end
-
     Tabs.Main:AddParagraph({
         Title = "Farming",
         Content = "Auto Farm"
     })
- 
+
     local DropdownSelectWeapon = Tabs.Main:AddDropdown("DropdownSelectWeapon", {
         Title = "Dropdown",
         Values = {'Melee','Sword','Blox Fruit'},
@@ -2633,195 +2631,6 @@ end
     end
 
 --------------------------------------------------------------------------------------------------------------------------------------------
--- Farm Cake Prince and Bone and Ectoplasm
-Tabs.Main:AddParagraph({
-    Title = "Misc Farm",
-    Content = "Misc Farm"
-})
-
-local ToggleBone = Tabs.Main:AddToggle("ToggleBone", {Title = "Auto Farm Bone", Default = false })
-ToggleBone:OnChanged(function(Value)
-    _G.AutoBone = Value
-end)
-Options.ToggleBone:SetValue(false)
-local FaiFaoQuestBone =  CFrame.new(-9515.75, 174.8521728515625, 6079.40625)
-
-
-spawn(function()
-    while wait() do
-        if _G.AutoBone then
-            pcall(function()
-                local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
-                if not string.find(QuestTitle, "Demonic Soul") then
-                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-                end
-                if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
-                    if BypassTP then
-                        wait()
-                       if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - FaiFaoQuestBone.Position).Magnitude > 2500 then
-                       BTP(FaiFaoQuestBone)
-              
-                       elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - FaiFaoQuestBone.Position).Magnitude < 2500 then
-               
-                       Tween(FaiFaoQuestBone)
-                       end
-                 else
-          
-                         Tween(FaiFaoQuestBone)
-                         end
-                if (FaiFaoQuestBone.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 then    
-                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest","HauntedQuest2",1)
-                    end
-                elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
-                    if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton") or game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie") or game:GetService("Workspace").Enemies:FindFirstChild("Demonic Soul") or game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy") then
-                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                            if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-                                if v.Name == "Reborn Skeleton" or v.Name == "Living Zombie" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy" then
-                                    if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, "Demonic Soul") then
-                                        repeat task.wait()
-                                            AutoHaki()
-                                            EquipTool(SelectWeapon)
-                                            Tween(v.HumanoidRootPart.CFrame * Pos)
-			                                v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
-                                            v.HumanoidRootPart.Transparency = 1
-                                            v.Humanoid.JumpPower = 0
-                                            v.Humanoid.WalkSpeed = 0
-                                            v.HumanoidRootPart.CanCollide = false
-                                            FarmPos = v.HumanoidRootPart.CFrame
-                                            MonFarm = v.Name
-                                            Click()
-                                        until not _G.AutoBone or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
-                                    else
-                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-                                    end
-                                end
-                            end
-                        end
-                    else
-                        if game:GetService("ReplicatedStorage"):FindFirstChild("Demonic Soul") then
-                        Tween(v.HumanoidRootPart.CFrame * Pos2)
-                        end
-                    end
-                    
-                end
-            end)
-        end
-    end
-end)
-
-
-local ToggleCake = Tabs.Main:AddToggle("ToggleCake", {Title = "Auto Farm Cake Prince", Default = false })
-ToggleCake:OnChanged(function(Value)
- _G.CakePrince = Value
-end)
-Options.ToggleCake:SetValue(false)
-
-
-spawn(function()
-    while task.wait() do
-        if _G.Auto_Cake_Prince then
-            pcall(function()
-                if game.ReplicatedStorage:FindFirstChild("Cake Prince") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then   
-                    if game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then
-                        for _,_self in pairs(game:GetService("Workspace").Enemies:GetChildren()) do 
-                            if string.find(_self.Name,"Cake Prince") then
-                                repeat wait()
-                                    AutoHaki()
-                                    EquipWeapon(_G.Select_Weapon)
-                                    _self.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
-                                    _self.HumanoidRootPart.CanCollide = false
-                                    getgenv().ToTarget(_self.HumanoidRootPart.CFrame * CFrame.new(0,30,0))
-                                until _G.Auto_Cake_Prince == false or not _self.Parent or _self.Humanoid.Health <= 0
-                            end    
-                        end    
-                    else
-                        for _,x in pairs(game.ReplicatedStorage:GetChildren()) do 
-                            if x.Name == "Cake Prince" or x.Name == "Dough King" then
-                                if (x.HumanoidRootPart.CFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 1000 then
-                                    getgenv().ToTarget(CFrame.new(-2145.89722, 70.0088272, -12399.6016, 0.99999702, 1.58276379e-08, 0.00245277886, -1.57982978e-08, 1, -1.19813057e-08, -0.00245277886, 1.19425199e-08, 0.99999702))
-                                    return
-                                end
-                            end
-                        end
-                    end
-                else
-                    if game.Workspace.Enemies:FindFirstChild("Baking Staff") or game.Workspace.Enemies:FindFirstChild("Head Baker") or game.Workspace.Enemies:FindFirstChild("Cake Guard") or game.Workspace.Enemies:FindFirstChild("Cookie Crafter")  then
-                        for _,__self in pairs(game:GetService("Workspace").Enemies:GetChildren()) do  
-                            if string.find(__self.Name,"Baking Staff") or string.find(__self.Name,"Head Baker") or string.find(__self.Name,"Cake Guard") or string.find(__self.Name,"Cookie Crafter") and __self.Humanoid.Health > 0 then
-                                repeat wait()
-                                    AutoHaki()
-                                    EquipWeapon(_G.Select_Weapon)
-                                    StartCakeMagnet = true
-                                    __self.HumanoidRootPart.Size = Vector3.new(60, 60, 60)  
-                                    POSCAKE = __self.HumanoidRootPart.CFrame
-                                    getgenv().ToTarget(__self.HumanoidRootPart.CFrame * CFrame.new(0,30,0))
-                                until _G.Auto_Cake_Prince == false or game:GetService("ReplicatedStorage"):FindFirstChild("Cake Prince") or not __self.Parent or __self.Humanoid.Health <= 0
-                            end
-                        end
-                    else
-                        if (CFrame.new(-1820.0634765625, 210.74781799316406, -12297.49609375).Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 2000 then
-                            BTP(CFrame.new(-1820.0634765625, 210.74781799316406, -12297.49609375))
-                            return
-                        end
-                        getgenv().ToTarget(CFrame.new(-1820.0634765625, 210.74781799316406, -12297.49609375))
-                        for _,__x in pairs(workspace._WorldOrigin.EnemySpawns:GetChildren()) do
-                            if __x.Name == "Baking Staff" or __x.Name == "Head Baker" or __x.Name == "Cake Guard" or __x.Name == "Cookie Crafter" then local CFrameEnemySpawns = __x.CFrame  wait(0.5)
-                                getgenv().ToTarget(CFrameEnemySpawns * CFrame.new(0,30,0))
-                            end
-                        end
-                    end
-                end
-            end)
-        end
-    end
-end)
-
-
-local ToggleVatChatKiDi = Tabs.Main:AddToggle("ToggleVatChatKiDi", {Title = "Auto Farm Ectoplasm", Default = false })
-ToggleVatChatKiDi:OnChanged(function(Value)
-    _G.Ecto = Value
-end)
-Options.ToggleVatChatKiDi:SetValue(false)
-
-spawn(function()
-    while wait(.1) do
-        pcall(function()
-            if _G.Ecto then
-                if game:GetService("Workspace").Enemies:FindFirstChild("Ship Deckhand") or game:GetService("Workspace").Enemies:FindFirstChild("Ship Engineer") or game:GetService("Workspace").Enemies:FindFirstChild("Ship Steward") or game:GetService("Workspace").Enemies:FindFirstChild("Ship Officer") then
-                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                        if v.Name == "Ship Steward" or v.Name == "Ship Engineer" or v.Name == "Ship Deckhand" or v.Name == "Ship Officer" and v:FindFirstChild("Humanoid") then
-                            if v.Humanoid.Health > 0 then
-                                repeat game:GetService("RunService").Heartbeat:wait()
-                                    AutoHaki()
-                                    EquipTool(SelectWeapon)
-                                    Tween(v.HumanoidRootPart.CFrame * Pos)
-                                    v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
-                                    v.HumanoidRootPart.Transparency = 1
-                                    v.Humanoid.JumpPower = 0
-                                    v.Humanoid.WalkSpeed = 0
-                                    v.HumanoidRootPart.CanCollide = false
-                                    --v.Humanoid:ChangeState(11)
-                                    --v.Humanoid:ChangeState(14)
-                                    FarmPos = v.HumanoidRootPart.CFrame
-                                    MonFarm = v.Name
-                                    Click()
-                                until _G.Ecto == false or not v.Parent or v.Humanoid.Health == 0 or not game:GetService("Workspace").Enemies:FindFirstChild(v.Name)
-                            end
-                        end
-                    end
-                else
-                    local Distance = (Vector3.new(904.4072265625, 181.05767822266, 33341.38671875) - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-                    if Distance > 20000 then
-                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(923.21252441406, 126.9760055542, 32852.83203125))
-                    end
-                    Tween(CFrame.new(904.4072265625, 181.05767822266, 33341.38671875))
-                end
-            end
-        end)
-    end
-end)
-
-
 --Mastery
     Tabs.Main:AddParagraph({
         Title = "Mastery Farm",
@@ -3363,6 +3172,199 @@ end
 end
 end
 end)
+
+
+
+
+Tabs.Main:AddParagraph({
+    Title = "Misc Farm",
+    Content = "Bone and Cake Prince"
+})
+
+local ToggleBone = Tabs.Main:AddToggle("ToggleBone", {Title = "Auto Farm Bone", Default = false })
+ToggleBone:OnChanged(function(Value)
+    _G.AutoBone = Value
+end)
+Options.ToggleBone:SetValue(false)
+local FaiFaoQuestBone =  CFrame.new(-9515.75, 174.8521728515625, 6079.40625)
+
+
+spawn(function()
+    while wait() do
+        if _G.AutoBone then
+            pcall(function()
+                local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
+                if not string.find(QuestTitle, "Demonic Soul") then
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                end
+                if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+                    if BypassTP then
+                        wait()
+                       if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - FaiFaoQuestBone.Position).Magnitude > 2500 then
+                       BTP(FaiFaoQuestBone)
+              
+                       elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - FaiFaoQuestBone.Position).Magnitude < 2500 then
+               
+                       Tween(FaiFaoQuestBone)
+                       end
+                 else
+          
+                         Tween(FaiFaoQuestBone)
+                         end
+                if (FaiFaoQuestBone.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 then    
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest","HauntedQuest2",1)
+                    end
+                elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+                    if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton") or game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie") or game:GetService("Workspace").Enemies:FindFirstChild("Demonic Soul") or game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy") then
+                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                            if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                                if v.Name == "Reborn Skeleton" or v.Name == "Living Zombie" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy" then
+                                    if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, "Demonic Soul") then
+                                        repeat task.wait()
+                                            AutoHaki()
+                                            EquipTool(SelectWeapon)
+                                            Tween(v.HumanoidRootPart.CFrame * Pos)
+			                                v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
+                                            v.HumanoidRootPart.Transparency = 1
+                                            v.Humanoid.JumpPower = 0
+                                            v.Humanoid.WalkSpeed = 0
+                                            v.HumanoidRootPart.CanCollide = false
+                                            FarmPos = v.HumanoidRootPart.CFrame
+                                            MonFarm = v.Name
+                                            Click()
+                                        until not _G.AutoBone or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
+                                    else
+                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                                    end
+                                end
+                            end
+                        end
+                    else
+                        if game:GetService("ReplicatedStorage"):FindFirstChild("Demonic Soul") then
+                        Tween(v.HumanoidRootPart.CFrame * Pos2)
+                        end
+                    end
+                    
+                end
+            end)
+        end
+    end
+end)
+
+
+local ToggleCake = Tabs.Main:AddToggle("ToggleCake", {Title = "Auto Farm Cake Prince", Default = false })
+ToggleCake:OnChanged(function(Value)
+ _G.CakePrince = Value
+end)
+Options.ToggleCake:SetValue(false)
+
+
+spawn(function()
+    while task.wait() do
+        if _G.Auto_Cake_Prince then
+            pcall(function()
+                if game.ReplicatedStorage:FindFirstChild("Cake Prince") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then   
+                    if game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then
+                        for _,_self in pairs(game:GetService("Workspace").Enemies:GetChildren()) do 
+                            if string.find(_self.Name,"Cake Prince") then
+                                repeat wait()
+                                    AutoHaki()
+                                    EquipWeapon(_G.Select_Weapon)
+                                    _self.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+                                    _self.HumanoidRootPart.CanCollide = false
+                                    getgenv().ToTarget(_self.HumanoidRootPart.CFrame * CFrame.new(0,30,0))
+                                until _G.Auto_Cake_Prince == false or not _self.Parent or _self.Humanoid.Health <= 0
+                            end    
+                        end    
+                    else
+                        for _,x in pairs(game.ReplicatedStorage:GetChildren()) do 
+                            if x.Name == "Cake Prince" or x.Name == "Dough King" then
+                                if (x.HumanoidRootPart.CFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 1000 then
+                                    getgenv().ToTarget(CFrame.new(-2145.89722, 70.0088272, -12399.6016, 0.99999702, 1.58276379e-08, 0.00245277886, -1.57982978e-08, 1, -1.19813057e-08, -0.00245277886, 1.19425199e-08, 0.99999702))
+                                    return
+                                end
+                            end
+                        end
+                    end
+                else
+                    if game.Workspace.Enemies:FindFirstChild("Baking Staff") or game.Workspace.Enemies:FindFirstChild("Head Baker") or game.Workspace.Enemies:FindFirstChild("Cake Guard") or game.Workspace.Enemies:FindFirstChild("Cookie Crafter")  then
+                        for _,__self in pairs(game:GetService("Workspace").Enemies:GetChildren()) do  
+                            if string.find(__self.Name,"Baking Staff") or string.find(__self.Name,"Head Baker") or string.find(__self.Name,"Cake Guard") or string.find(__self.Name,"Cookie Crafter") and __self.Humanoid.Health > 0 then
+                                repeat wait()
+                                    AutoHaki()
+                                    EquipWeapon(_G.Select_Weapon)
+                                    StartCakeMagnet = true
+                                    __self.HumanoidRootPart.Size = Vector3.new(60, 60, 60)  
+                                    POSCAKE = __self.HumanoidRootPart.CFrame
+                                    getgenv().ToTarget(__self.HumanoidRootPart.CFrame * CFrame.new(0,30,0))
+                                until _G.Auto_Cake_Prince == false or game:GetService("ReplicatedStorage"):FindFirstChild("Cake Prince") or not __self.Parent or __self.Humanoid.Health <= 0
+                            end
+                        end
+                    else
+                        if (CFrame.new(-1820.0634765625, 210.74781799316406, -12297.49609375).Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 2000 then
+                            BTP(CFrame.new(-1820.0634765625, 210.74781799316406, -12297.49609375))
+                            return
+                        end
+                        getgenv().ToTarget(CFrame.new(-1820.0634765625, 210.74781799316406, -12297.49609375))
+                        for _,__x in pairs(workspace._WorldOrigin.EnemySpawns:GetChildren()) do
+                            if __x.Name == "Baking Staff" or __x.Name == "Head Baker" or __x.Name == "Cake Guard" or __x.Name == "Cookie Crafter" then local CFrameEnemySpawns = __x.CFrame  wait(0.5)
+                                getgenv().ToTarget(CFrameEnemySpawns * CFrame.new(0,30,0))
+                            end
+                        end
+                    end
+                end
+            end)
+        end
+    end
+end)
+
+
+local ToggleVatChatKiDi = Tabs.Main:AddToggle("ToggleVatChatKiDi", {Title = "Auto Farm Ectoplasm", Default = false })
+ToggleVatChatKiDi:OnChanged(function(Value)
+    _G.Ecto = Value
+end)
+Options.ToggleVatChatKiDi:SetValue(false)
+
+spawn(function()
+    while wait(.1) do
+        pcall(function()
+            if _G.Ecto then
+                if game:GetService("Workspace").Enemies:FindFirstChild("Ship Deckhand") or game:GetService("Workspace").Enemies:FindFirstChild("Ship Engineer") or game:GetService("Workspace").Enemies:FindFirstChild("Ship Steward") or game:GetService("Workspace").Enemies:FindFirstChild("Ship Officer") then
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v.Name == "Ship Steward" or v.Name == "Ship Engineer" or v.Name == "Ship Deckhand" or v.Name == "Ship Officer" and v:FindFirstChild("Humanoid") then
+                            if v.Humanoid.Health > 0 then
+                                repeat game:GetService("RunService").Heartbeat:wait()
+                                    AutoHaki()
+                                    EquipTool(SelectWeapon)
+                                    Tween(v.HumanoidRootPart.CFrame * Pos)
+                                    v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+                                    v.HumanoidRootPart.Transparency = 1
+                                    v.Humanoid.JumpPower = 0
+                                    v.Humanoid.WalkSpeed = 0
+                                    v.HumanoidRootPart.CanCollide = false
+                                    --v.Humanoid:ChangeState(11)
+                                    --v.Humanoid:ChangeState(14)
+                                    FarmPos = v.HumanoidRootPart.CFrame
+                                    MonFarm = v.Name
+                                    Click()
+                                until _G.Ecto == false or not v.Parent or v.Humanoid.Health == 0 or not game:GetService("Workspace").Enemies:FindFirstChild(v.Name)
+                            end
+                        end
+                    end
+                else
+                    local Distance = (Vector3.new(904.4072265625, 181.05767822266, 33341.38671875) - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+                    if Distance > 20000 then
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(923.21252441406, 126.9760055542, 32852.83203125))
+                    end
+                    Tween(CFrame.new(904.4072265625, 181.05767822266, 33341.38671875))
+                end
+            end
+        end)
+    end
+end)
+
+
+
 
 
 
@@ -4073,7 +4075,7 @@ end
 
      Tabs.Main:AddParagraph({
         Title = "Items",
-        Content = "Auto Get items"
+        Content = "Auto get items"
     })
 
 
@@ -4132,7 +4134,7 @@ end
            end)
         
            
-           local ToggleYama = Tabs.Main:AddToggle("ToggleYama", {Title = "Auto Pull Yama", Default = false })
+           local ToggleYama = Tabs.Main:AddToggle("ToggleYama", {Title = "Auto Yama", Default = false })
            ToggleYama:OnChanged(function(Value)
             _G.AutoYama = Value
            end)
@@ -4447,56 +4449,56 @@ CamShake:Stop()
 
 
 
-local ToggleBringMob = Tabs.Setting:AddToggle("ToggleBringMob", {Title = "Bring Mob", Default = true })
-ToggleBringMob:OnChanged(function(Value)
-    BringMobs = Value
-end)
-Options.ToggleBringMob:SetValue(true)
-task.spawn(function()
-    while task.wait() do
-    if BringMobs then
-    pcall(function()
-      for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-      if not string.find(v.Name,"Boss") and v.Name == MonFarm and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 350 then
-      if InMyNetWork(v.HumanoidRootPart) then
-        if InMyNetWork(v.HumanoidRootPart) then
-      v.HumanoidRootPart.CFrame = FarmPos
-      v.HumanoidRootPart.CanCollide = false
-      v.HumanoidRootPart.Size = Vector3.new(1,1,1)
-      if v.Humanoid:FindFirstChild("Animator") then
-        v.Humanoid.Animator:Destroy()
-    end
-      end
-    end
-      end
-      end
-      end)
-    end
+    local ToggleBringMob = Tabs.Setting:AddToggle("ToggleBringMob", {Title = "Bring Mob", Default = true })
+    ToggleBringMob:OnChanged(function(Value)
+        BringMobs = Value
+    end)
+    Options.ToggleBringMob:SetValue(true)
+	task.spawn(function()
+        while task.wait() do
+        if BringMobs then
+        pcall(function()
+          for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
+          if not string.find(v.Name,"Boss") and v.Name == MonFarm and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 350 then
+          if InMyNetWork(v.HumanoidRootPart) then
+            if InMyNetWork(v.HumanoidRootPart) then
+          v.HumanoidRootPart.CFrame = FarmPos
+          v.HumanoidRootPart.CanCollide = false
+          v.HumanoidRootPart.Size = Vector3.new(1,1,1)
+		  if v.Humanoid:FindFirstChild("Animator") then
+			v.Humanoid.Animator:Destroy()
+		end
+          end
+        end
+          end
+          end
+          end)
+        end
 
-end
-    end)
-  
-  task.spawn(function()
-    while true do wait()
-    if setscriptable then
-    setscriptable(game.Players.LocalPlayer,"SimulationRadius",true)
     end
-    if sethiddenproperty then
-    sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
-    end
-    end
-    end)
-  
-  function InMyNetWork(object)
-  if isnetworkowner then
-  return isnetworkowner(object)
-  else
-    if (object.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 350 then
-  return true
-  end
-  return false
-  end
-  end
+        end)
+      
+      task.spawn(function()
+        while true do wait()
+        if setscriptable then
+        setscriptable(game.Players.LocalPlayer,"SimulationRadius",true)
+        end
+        if sethiddenproperty then
+        sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
+        end
+        end
+        end)
+      
+      function InMyNetWork(object)
+      if isnetworkowner then
+      return isnetworkowner(object)
+      else
+        if (object.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 350 then
+      return true
+      end
+      return false
+      end
+      end
 
 
 
