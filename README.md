@@ -6,34 +6,34 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
 local Window = Fluent:CreateWindow({
-    Title = "Zephyr Hub New Projects",
-    SubTitle = "Version 2.0",
-    TabWidth = 160,
-    Size = UDim2.fromOffset(500, 350),
-    Acrylic = false,
-    Theme = "Dark",
-    MinimizeKey = Enum.KeyCode.End
+	Title = "Zephyr Hub New Projects",
+	SubTitle = "Version 2.0",
+	TabWidth = 160,
+	Size = UDim2.fromOffset(500, 350),
+	Acrylic = false,
+	Theme = "Dark",
+	MinimizeKey = Enum.KeyCode.End
 })
 local Options = Fluent.Options
 local Tabs = {
-    Main = Window:AddTab({ Title = "Main", Icon = "home" }),
-    Setting = Window:AddTab({ Title = "Setting", Icon = "settings" }),
+	Main = Window:AddTab({ Title = "Main", Icon = "home" }),
+	Setting = Window:AddTab({ Title = "Setting", Icon = "settings" }),
 }
 
 _G.Settings = {
-    Auto_Farm_Level = false,
+	Auto_Farm_Level = false,
 }
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 if game.PlaceId == 2753915549 then
-    World1 = true
+	World1 = true
 elseif game.PlaceId == 4442272183 then
-    World2 = true
+	World2 = true
 elseif game.PlaceId == 7449423635 then
-    World3 = true
+	World3 = true
 else
-    game:Shutdown()
+	game:Shutdown()
 end
 
 function LoadSettings()
@@ -245,13 +245,13 @@ function __Function__:QuestCheck()
 end
 
 function __Function__:Module()
-    local Players = game.Players
-    local Client = Players.localPlayer
-    local Character = Client.Character
-    local RootPart = Client.HumanoidRootPart
-    local PlayerGui = Client.PlayerGui
-    return { 
-        [1] = Client, [2] = Character, [3] = RootPart, [4] = PlayerGui,
+	local Players = game.Players
+	local Client = Players.localPlayer
+	local Character = Client.Character
+	local RootPart = Client.HumanoidRootPart
+	local PlayerGui = Client.PlayerGui
+	return { 
+		[1] = Client, [2] = Character, [3] = RootPart, [4] = PlayerGui,
 	}
 end
 
@@ -266,25 +266,25 @@ function __Function__:EquipTools(tool)
 end
 
 function __Function__:IsSameName(full, sub)
-    return full:lower():sub(1, #sub) == sub:lower()
+	return full:lower():sub(1, #sub) == sub:lower()
 end
 
 function __Function__:GetMobName(name, custom)
-    local targetList = custom
-    local nearest, minDist, minHealth = nil, math.huge, math.huge
-    for _, target in ipairs(targetList) do
-        local humanoid = target:FindFirstChildOfClass("Humanoid")
-        if (not name or __Function__:IsSameName(target.Name, name) or name == "") and (not excludePlayer or target.Parent ~= game.workspac.Characters) then
-            if humanoid and humanoid.Health > 0 then
-                local targetPosition = humanoid.RootPart.Position
-                local distanceToTarget = (targetPosition - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude
-                if distanceToTarget < minDist or (distanceToTarget - minDist < 50 and humanoid.Health < minHealth) then
-                    minDist, minHealth, nearest = distanceToTarget, humanoid.Health, target
-                end
-            end
-        end
-    end
-    return nearest
+	local targetList = custom
+	local nearest, minDist, minHealth = nil, math.huge, math.huge
+	for _, target in ipairs(targetList) do
+		local humanoid = target:FindFirstChildOfClass("Humanoid")
+		if (not name or __Function__:IsSameName(target.Name, name) or name == "") and (not excludePlayer or target.Parent ~= game.workspac.Characters) then
+			if humanoid and humanoid.Health > 0 then
+				local targetPosition = humanoid.RootPart.Position
+				local distanceToTarget = (targetPosition - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude
+				if distanceToTarget < minDist or (distanceToTarget - minDist < 50 and humanoid.Health < minHealth) then
+					minDist, minHealth, nearest = distanceToTarget, humanoid.Health, target
+				end
+			end
+		end
+	end
+	return nearest
 end
 
 function __Function__:BTP(Position)
@@ -313,9 +313,9 @@ function __Function__:ToTarget(targetCFrame)
 end
 
 function __Function__:AutoHaki()
-    if not game:GetService("Players").LocalPlayer.Character:FindFirstChild("HasBuso") then
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
-    end
+	if not game:GetService("Players").LocalPlayer.Character:FindFirstChild("HasBuso") then
+		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
+	end
 end
 
 function __Function__:StopTween(target)
@@ -349,10 +349,10 @@ _Module_ = function()
 			[6] = CameraShaker,
 			[7] = RigEvent
 		}
-	end
-	if not Success then
-		warn("Module Error Send this message to mexuaita\n",Error)
-	end
+	end)
+  if not Success then
+	warn("Module Error Send this message to mexuaita\n",Error)
+end
 end
 
 function GetPositionMob()
@@ -483,7 +483,7 @@ task.spawn(function()
 end)
 
 function _C(Data)
-    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(Data)
+	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(Data)
 end
 
 -- Example usage
@@ -492,128 +492,128 @@ local __FunctionMain__ = setmetatable({}, {__index = __Function__ })
 -----------------------------------------------------------------------------------------------------------------------------
 
 local Select_Weapon = Tabs.Main:AddDropdown("DropdownSelectWeapon", {
-    Title = "Weapon",
-    Values = {'Melee','Sword','Blox Fruit'},
-    Multi = false,
-    Default = 1,
+	Title = "Weapon",
+	Values = {'Melee','Sword','Blox Fruit'},
+	Multi = false,
+	Default = 1,
 })
 Select_Weapon:SetValue('Melee')
 Select_Weapon:OnChanged(function(Value)
-    _G.Select_Weapon = Value
+	_G.Select_Weapon = Value
 end)
 
 spawn(function()
-    while wait() do
-        pcall(function()
-            if _G.Select_Weapon == "Melee" then
-                for i ,v in pairs(__FunctionMain__:Module()[1].Backpack:GetChildren()) do
-                    if v.ToolTip == "Melee" then
-                        if __FunctionMain__:Module()[1].Backpack:FindFirstChild(tostring(v.Name)) then
-                            SelectWeapon = v.Name
-                        end
-                    end
-                end
-            elseif _G.Select_Weapon == "Sword" then
-                for i ,v in pairs(__FunctionMain__:Module()[1].Backpack:GetChildren()) do
-                    if v.ToolTip == "Sword" then
-                        if __FunctionMain__:Module()[1].Backpack:FindFirstChild(tostring(v.Name)) then
-                            SelectWeapon = v.Name
-                        end
-                    end
-                end
-            elseif _G.Select_Weapon == " Blox Fruit" then
-                for i ,v in pairs(__FunctionMain__:Module()[1].Backpack:GetChildren()) do
-                    if v.ToolTip == "Blox Fruit" then
-                        if __FunctionMain__:Module()[1].Backpack:FindFirstChild(tostring(v.Name)) then
-                            SelectWeapon = v.Name
-                        end
-                    end
-                end
-            else
-                for i ,v in pairs(__FunctionMain__:Module()[1].Backpack:GetChildren()) do
-                    if v.ToolTip == "Melee" then
-                        if __FunctionMain__:Module()[1].Backpack:FindFirstChild(tostring(v.Name)) then
-                            SelectWeapon = v.Name
-                        end
-                    end
-                end
-            end
-        end)
-    end
+	while wait() do
+		pcall(function()
+			if _G.Select_Weapon == "Melee" then
+				for i ,v in pairs(__FunctionMain__:Module()[1].Backpack:GetChildren()) do
+					if v.ToolTip == "Melee" then
+						if __FunctionMain__:Module()[1].Backpack:FindFirstChild(tostring(v.Name)) then
+							SelectWeapon = v.Name
+						end
+					end
+				end
+			elseif _G.Select_Weapon == "Sword" then
+				for i ,v in pairs(__FunctionMain__:Module()[1].Backpack:GetChildren()) do
+					if v.ToolTip == "Sword" then
+						if __FunctionMain__:Module()[1].Backpack:FindFirstChild(tostring(v.Name)) then
+							SelectWeapon = v.Name
+						end
+					end
+				end
+			elseif _G.Select_Weapon == " Blox Fruit" then
+				for i ,v in pairs(__FunctionMain__:Module()[1].Backpack:GetChildren()) do
+					if v.ToolTip == "Blox Fruit" then
+						if __FunctionMain__:Module()[1].Backpack:FindFirstChild(tostring(v.Name)) then
+							SelectWeapon = v.Name
+						end
+					end
+				end
+			else
+				for i ,v in pairs(__FunctionMain__:Module()[1].Backpack:GetChildren()) do
+					if v.ToolTip == "Melee" then
+						if __FunctionMain__:Module()[1].Backpack:FindFirstChild(tostring(v.Name)) then
+							SelectWeapon = v.Name
+						end
+					end
+				end
+			end
+		end)
+	end
 end)
 
 
 local ToggleLevel = Tabs.Main:AddToggle("ToggleLevel", {
-    Title = "Auto Level", 
-    Default = _G.Settings.Auto_Farm_Level 
+	Title = "Auto Level", 
+	Default = _G.Settings.Auto_Farm_Level 
 })
 Options.ToggleLevel:SetValue(false)
 QuestCheck()
 spawn(function()
-    while wait() do
-        pcall(function()
-            if _G.Auto_Farm_Level and game.Players.LocalPlayer.Data.Level < 300 then
-                local __FunctionMain__ = __FunctionMain__ -- เพิ่มตรงนี้
-                if __FunctionMain__ then
-                    local module = __FunctionMain__:Module()
-                    local questCheck = __FunctionMain__:QuestCheck()
-                    if module[4].Main.Quest.Visible then
-                        local questName = questCheck[3]
-                        local enemy = game:GetService("Workspace").Enemies:FindFirstChild(questName)
-                        if enemy then
-                            local _x = __FunctionMain__:GetMobName(questName)
-                            if _x and _x:FindFirstChild("Humanoid") and _x:FindFirstChild("HumanoidRootPart") and _x.Humanoid.Health > 0 then
-                                repeat wait()
-                                    if not string.find(module[4].Main.Quest.Container.QuestTitle.Title.Text, questCheck[6]) then
-                                        _C("AbandonQuest")
-                                    else
-                                        local howFar = Step[1] or Vector3.new(0, 50, 0)
-                                        if math.abs(_x.HumanoidRootPart.RootPart.Position.X - 1000) < 25 then
-                                            local newPosition = _x.HumanoidRootPart.RootPart.Position + howFar + Vector3.new(math.random(-1, 1) / 4, 0, math.random(-1, 1) / 4)
-                                            print(math.floor(newPosition.X), math.floor(newPosition.Y), math.floor(newPosition.Z))
-                                        end
+	while wait() do
+		pcall(function()
+			if _G.Auto_Farm_Level and game.Players.LocalPlayer.Data.Level < 300 then
+				local __FunctionMain__ = __FunctionMain__ -- เพิ่มตรงนี้
+				if __FunctionMain__ then
+					local module = __FunctionMain__:Module()
+					local questCheck = __FunctionMain__:QuestCheck()
+					if module[4].Main.Quest.Visible then
+						local questName = questCheck[3]
+						local enemy = game:GetService("Workspace").Enemies:FindFirstChild(questName)
+						if enemy then
+							local _x = __FunctionMain__:GetMobName(questName)
+							if _x and _x:FindFirstChild("Humanoid") and _x:FindFirstChild("HumanoidRootPart") and _x.Humanoid.Health > 0 then
+								repeat wait()
+									if not string.find(module[4].Main.Quest.Container.QuestTitle.Title.Text, questCheck[6]) then
+										_C("AbandonQuest")
+									else
+										local howFar = Step[1] or Vector3.new(0, 50, 0)
+										if math.abs(_x.HumanoidRootPart.RootPart.Position.X - 1000) < 25 then
+											local newPosition = _x.HumanoidRootPart.RootPart.Position + howFar + Vector3.new(math.random(-1, 1) / 4, 0, math.random(-1, 1) / 4)
+											print(math.floor(newPosition.X), math.floor(newPosition.Y), math.floor(newPosition.Z))
+										end
 										PosMon = _x.HumanoidRootPart.CFrame
-                                        __FunctionMain__:EquipTools(_G.Select_Weapon)
-                                        __FunctionMain__:ToTarget(_x.HumanoidRootPart.RootPart.Position + howFar)
-                                        if (_x.HumanoidRootPart.CFrame.Position - module[3].Position).Magnitude <= 50 then
-                                            game:GetService("VirtualUser"):CaptureController()
-                                            game:GetService("VirtualUser"):Button1Down(Vector2.new(1280, 672))
-                                        end
-                                    end
-                                until not _G.Auto_Farm_Level or not _x.Parent or _x.Humanoid.Health <= 0 or game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == false
-                            end
-                        else
-                            repeat
-                                wait()
-                                __FunctionMain__:ToTarget(questCheck[2])
-                            until (questCheck[2].Position - module[3].Position).Magnitude <= 1 or not _G.Auto_Farm_Level
-                        end
-                    else
-                        repeat
-                            wait()
-                            __FunctionMain__:ToTarget(questCheck[2])
-                        until (questCheck[2].Position - module[3].Position).Magnitude <= 1 or not _G.Auto_Farm_Level
-                        if (questCheck[2].Position - module[3].Position).Magnitude <= 10 then
-                            wait(0.2)
-                            _C("StartQuest", questCheck[4], questCheck[1])
-                            wait(0.5)
-                        else
-                            repeat
-                                wait()
-                                __FunctionMain__:ToTarget(questCheck[2])
-                            until (questCheck[2].Position - module[3].Position).Magnitude <= 1 or not _G.Auto_Farm_Level
-                        end
-                    end
-                end
-            else
-                game.Players.localPlayer.kick(" Your level is over 300. \n Developer : Maruko ")
-                task.wait(10.0)
-                local ts = game:GetService("TeleportService")
-                local p = game:GetService("Players").LocalPlayer
-                ts:Teleport(game.PlaceId, p)
-            end
-        end)
-    end
+										__FunctionMain__:EquipTools(_G.Select_Weapon)
+										__FunctionMain__:ToTarget(_x.HumanoidRootPart.RootPart.Position + howFar)
+										if (_x.HumanoidRootPart.CFrame.Position - module[3].Position).Magnitude <= 50 then
+											game:GetService("VirtualUser"):CaptureController()
+											game:GetService("VirtualUser"):Button1Down(Vector2.new(1280, 672))
+										end
+									end
+								until not _G.Auto_Farm_Level or not _x.Parent or _x.Humanoid.Health <= 0 or game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == false
+							end
+						else
+							repeat
+								wait()
+								__FunctionMain__:ToTarget(questCheck[2])
+							until (questCheck[2].Position - module[3].Position).Magnitude <= 1 or not _G.Auto_Farm_Level
+						end
+					else
+						repeat
+							wait()
+							__FunctionMain__:ToTarget(questCheck[2])
+						until (questCheck[2].Position - module[3].Position).Magnitude <= 1 or not _G.Auto_Farm_Level
+						if (questCheck[2].Position - module[3].Position).Magnitude <= 10 then
+							wait(0.2)
+							_C("StartQuest", questCheck[4], questCheck[1])
+							wait(0.5)
+						else
+							repeat
+								wait()
+								__FunctionMain__:ToTarget(questCheck[2])
+							until (questCheck[2].Position - module[3].Position).Magnitude <= 1 or not _G.Auto_Farm_Level
+						end
+					end
+				end
+			else
+				game.Players.localPlayer.kick(" Your level is over 300. \n Developer : Maruko ")
+				task.wait(10.0)
+				local ts = game:GetService("TeleportService")
+				local p = game:GetService("Players").LocalPlayer
+				ts:Teleport(game.PlaceId, p)
+			end
+		end)
+	end
 end)
 
 
