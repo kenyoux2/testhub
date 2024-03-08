@@ -350,9 +350,9 @@ _Module_ = function()
 			[7] = RigEvent
 		}
 	end)
-  if not Success then
-	warn("Module Error Send this message to mexuaita\n",Error)
-end
+	if not Success then
+		warn("Module Error Send this message to mexuaita\n",Error)
+	end
 end
 
 function GetPositionMob()
@@ -548,7 +548,6 @@ local ToggleLevel = Tabs.Main:AddToggle("ToggleLevel", {
 	Default = _G.Settings.Auto_Farm_Level 
 })
 Options.ToggleLevel:SetValue(false)
-QuestCheck()
 spawn(function()
 	while wait() do
 		pcall(function()
