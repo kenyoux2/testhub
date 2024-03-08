@@ -547,14 +547,8 @@ local ToggleLevel = Tabs.Main:AddToggle("ToggleLevel", {
     Title = "Auto Level", 
     Default = _G.Settings.Auto_Farm_Level 
 })
-ToggleLevel:OnChanged(function(Value)
-    _G.Auto_Farm_Level = Value
-    _G.FastAttack = Value
-	_G.Bring_Mob = Value
-    SaveSettings()
-    StopTween(_G.Auto_Farm_Level)
-end)
-
+Options.ToggleLevel:SetValue(false)
+QuestCheck()
 spawn(function()
     while wait() do
         pcall(function()
